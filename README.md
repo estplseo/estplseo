@@ -48,8 +48,8 @@ Copy code
 
 ## Contributors
 
-- John Doe <john.doe@example.com>
-- Jane Smith <jane.smith@example.com>
+- John Doe (https://esquare-tech.blogspot.com/2024/03/system-development-features-of-digital.html)>
+- Jane Smith https://esquare-tech.blogspot.com/2024/02/cloud-computing-revolutionizing-digital.html)
 
 ## License
 
