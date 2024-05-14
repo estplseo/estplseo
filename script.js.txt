@@ -1,0 +1,75 @@
+// script.js
+
+// Smooth scrolling
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+
+        document.querySelector(this.getAttribute('href')).scrollIntoView({
+            behavior: 'smooth'
+        });
+    });
+});
+
+// Form validation
+document.addEventListener("DOMContentLoaded", function() {
+    const form = document.getElementById("contact-form");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const messageInput = document.getElementById("message");
+
+    form.addEventListener("submit", function(event) {
+        event.preventDefault();
+        if (validateForm()) {
+            // Send form data
+            console.log("Form submitted successfully!");
+            form.reset();
+        }
+    });
+
+    function validateForm() {
+        let isValid = true;
+
+        if (nameInput.value.trim() === "") {
+            setErrorFor(nameInput, "Name cannot be blank");
+            isValid = false;
+        } else {
+            setSuccessFor(nameInput);
+        }
+
+        if (emailInput.value.trim() === "") {
+            setErrorFor(emailInput, "Email cannot be blank");
+            isValid = false;
+        } else if (!isEmailValid(emailInput.value.trim())) {
+            setErrorFor(emailInput, "Please enter a valid email address");
+            isValid = false;
+        } else {
+            setSuccessFor(emailInput);
+        }
+
+        if (messageInput.value.trim() === "") {
+            setErrorFor(messageInput, "Message cannot be blank");
+            isValid = false;
+        } else {
+            setSuccessFor(messageInput);
+        }
+
+        return isValid;
+    }
+
+    function setErrorFor(input, message) {
+        const formControl = input.parentElement;
+        const errorMessage = formControl.querySelector(".error-message");
+        formControl.classList.add("error");
+        errorMessage.innerText = message;
+    }
+
+    function setSuccessFor(input) {
+        const formControl = input.parentElement;
+        formControl.classList.remove("error");
+    }
+
+    function isEmailValid(email) {
+        return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+});
